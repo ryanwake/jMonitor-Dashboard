@@ -34,7 +34,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/index.html');
+    res.redirect('/');
 });
 
 router.get('/logout', function(req, res) {
@@ -43,7 +43,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/ping', function(req, res){
-    res.status(200).send("pog!");
+    res.status(200).send("pong!");
 });
 
 module.exports = router;
