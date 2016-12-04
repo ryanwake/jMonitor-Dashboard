@@ -1,0 +1,16 @@
+body {
+    padding-top: 50px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.compLabel {
+  margin-top: 40px;
+}
+
+#osvers {
+  height: 5px;
+}
