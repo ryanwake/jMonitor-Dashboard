@@ -71,16 +71,16 @@ $(document).ready(function() {
                 var days = diff / MATH;
                 if (days >= 7) {
                     $('#computers > tbody:last-child').append('<tr class="danger"><td>' +
-                        '<a onclick="test(\'' + data[i].macAddr + '\')" class="btn btn-default btn-sm">' +
-                        data[i].hostname + '</a></td><td>' + data[i].macAddr +
+                        '<a href="http://localhost:8080/getLog/' +  data[i].macAddr + '" class="btn btn-default btn-sm">' +
+                        data[i].hostname + '</a></td><td>' +  data[i].appvers + '</td><td>' + data[i].macAddr +
                         '</td><td>' + data[i].ip + '</td><td>' + data[i].osname +
                         '</td><td>' + data[i].osvers + '</td><td>' + data[i].osbuild +
                         '</td><td>' + data[i].processor + '</td><td>' + data[i].memory +
                         '</td><td>' + data[i].last_checkin + '</td></tr>');
                 } else {
                     $('#computers > tbody:last-child').append('<tr><td>' +
-                        '<a onclick="test(\'' + data[i].macAddr + '\')" class="btn btn-default btn-sm">' +
-                        data[i].hostname + '</a></td><td>' + data[i].macAddr +
+                        '<a href="http://localhost:8080/getLog/' +  data[i].macAddr +'" class="btn btn-default btn-sm">' +
+                        data[i].hostname + '</a></td><td>' + data[i].appvers + '</td><td>' + data[i].macAddr +
                         '</td><td>' + data[i].ip + '</td><td>' + data[i].osname +
                         '</td><td>' + data[i].osvers + '</td><td>' + data[i].osbuild +
                         '</td><td>' + data[i].processor + '</td><td>' + data[i].memory +
