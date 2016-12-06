@@ -1,0 +1,104 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>jMonitor Logs</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 80px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type='text/javascript'>
+        var body = '';
+        $.ajax({
+
+            url: "http://104.131.38.163/jmonitor/<%= data %>/system.log_<%= data %>",
+            method: "GET",
+            success: function(data) {
+                body = data;
+            },
+            async: false
+        });
+        var body2 = '';
+        $.ajax({
+
+            url: "http://104.131.38.163/jmonitor/<%= data %>/jMonitor.log_<%= data %>",
+            method: "GET",
+            success: function(data) {
+                body2 = data;
+            },
+            async: false
+        });
+    </script>
+
+    <div class="container">
+
+        <div class="page-header text-center">
+            <h1><span class="fa fa-user-circle-o"></span> Logs for <%= data %></h1>
+        </div>
+
+        <div class="row">
+
+            <!-- LOCAL INFORMATION -->
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3><span class="fa fa-user"></span> System.log</h3>
+
+                    <p>
+
+                        <div id="system">
+
+                        </div>
+
+
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3>jMonitor.log</h3>
+                    <p>
+                      <div id="app">
+                      </div>
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script>
+        function htmlForTextWithEmbeddedNewlines(text) {
+            var htmls = [];
+            var lines = text.split(/\n/);
+            // The temporary <div/> is to perform HTML entity encoding reliably.
+            //
+            // document.createElement() is *much* faster than jQuery('<div></div>')
+            // http://stackoverflow.com/questions/268490/
+            //
+            // You don't need jQuery but then you need to struggle with browser
+            // differences in innerText/textContent yourself
+            var tmpDiv = jQuery(document.createElement('div'));
+            for (var i = 0; i < lines.length; i++) {
+                htmls.push(tmpDiv.text(lines[i]).html());
+            }
+            return htmls.join("<br>");
+        }
+
+        $('#system').html(htmlForTextWithEmbeddedNewlines(body))
+        $('#app').html(htmlForTextWithEmbeddedNewlines(body2))
+    </script>
+</body>
+
+</html>
